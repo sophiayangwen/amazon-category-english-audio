@@ -1,0 +1,140 @@
+<!doctype html><html lang="zh-Hans"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark"><meta name="theme-color" content="#111418">
+<title>亚马逊品类管理英语 · 听说练习</title>
+<style>
+:root{--bg:#fff;--card:#f5f6f8;--el:#fff;--tx:#14171a;--t2:#555c66;--t3:#8a929c;--bd:#d9dde3;--ac:#1d6ef2;--acs:#e6efff;--ok:#16a34a;--bad:#dc2626}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1114;--card:#1a1d22;--el:#20242a;--tx:#eef0f3;--t2:#b3bac4;--t3:#7f8792;--bd:#323840;--ac:#5b9bff;--acs:#1a2a45;--ok:#4ade80;--bad:#f87171}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--tx);font:18px/1.6 system-ui,-apple-system,"Noto Sans SC",sans-serif;-webkit-text-size-adjust:100%}
+.w{max-width:760px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) calc(200px + env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left))}
+h1{font-size:24px;line-height:1.3;margin:0}.sub{font-size:15px;color:var(--t2);margin-top:6px}a{color:var(--ac)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+button,select{min-height:48px;min-width:48px;padding:0 14px;border-radius:12px;border:1px solid var(--bd);background:var(--el);color:var(--tx);font-size:16px;font-family:inherit;touch-action:manipulation}
+button.on{background:var(--ac);color:#fff;border-color:var(--ac)}.f{flex:1 1 80px}
+.tp{font-size:15px;font-weight:600;color:var(--t2);margin:18px 0 6px}
+.c{display:flex;gap:10px;padding:14px;margin-bottom:8px;border-radius:14px;border:1px solid var(--bd);background:var(--card)}
+.c.cur{border-color:var(--ac);background:var(--acs)}.c .pb{flex:0 0 48px;padding:0;font-size:18px}
+.n{font-size:13px;color:var(--t3)}.en{font-size:18px}.zh{font-size:16px;color:var(--t2);margin-top:4px}
+.k{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.k span{font-size:14px;padding:2px 8px;border-radius:8px;border:1px solid var(--bd);color:var(--t2)}.k b{color:var(--tx)}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--el);border-top:1px solid var(--bd);padding:10px max(12px,env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
+.bar .in{max-width:760px;margin:0 auto}.st{font-size:15px}.st .z{font-size:14px;color:var(--t2)}
+.msg{font-size:15px;color:var(--t2)}.err{font-size:14px;color:var(--bad);word-break:break-all}.ok{color:var(--ok)}.bd{color:var(--bad);text-decoration:underline}
+input[type=range]{flex:1;min-width:120px;height:32px}.hint{font-size:14px;color:var(--t2);margin-top:10px}
+.lang-en .zh,.lang-zh .en{display:none}
+</style></head><body class="lang-bi"><div class="w">
+<h1>亚马逊品类管理英语 · 听说练习</h1>
+<div class="sub">50 句原创行业英语，美式女声神经语音朗读（en-US-AriaNeural）。主题参考播客 “Driving Profitability on Amazon”（Unpacking the Digital Shelf，嘉宾 Martin Heubel），原声与原文请到官网收听：<a href="https://www.digitalshelfinstitute.org/podcast/profitability-amazon" target="_blank" rel="noopener">digitalshelfinstitute.org</a>。本页句子为原创练习内容，非访谈原文。</div>
+<div class="row"><button class="f" data-m="listen">听</button><button class="f" data-m="speak">说</button></div>
+<div class="row"><button class="f" data-l="en">仅英文</button><button class="f" data-l="bi">双语</button><button class="f" data-l="zh">仅中文</button></div>
+<div class="row"><select id="topic" class="f"></select><span id="score" class="n"></span></div>
+<div id="hint" class="hint"></div><div id="list"></div></div>
+<div class="bar"><div class="in">
+<div class="st" id="st"></div><div class="msg" id="msg"></div><div class="err" id="err"></div>
+<div class="row"><button id="prev" aria-label="上一句">◀</button><button id="rep" class="f on">重播</button><button id="act" class="f">连播</button><button id="loop">循环</button><button id="next" aria-label="下一句">▶</button></div>
+<div class="row" style="font-size:14px;color:var(--t2)">语速 <span id="rv">1.0x</span><input id="rate" type="range" min="0.6" max="1.2" step="0.1"></div>
+</div></div>
+<audio id="au" preload="metadata"></audio>
+<script>
+const D=[
+["规模与盈利","Growing sales on Amazon is easy to celebrate, but growth without margin can quietly drain a brand.","在亚马逊上增长销量很容易让人兴奋，但没有利润的增长会悄悄拖垮一个品牌。",[["margin","利润率"],["drain","消耗、拖垮"]]],
+["规模与盈利","Before we chase scale, we need to know whether each unit we sell actually makes money.","在追求规模之前，我们要先弄清楚每卖出一件是否真的赚钱。",[["chase scale","追求规模"],["unit","单件商品"]]],
+["规模与盈利","A best-selling item can still be unprofitable once fees, freight, and returns are included.","把佣金、运费和退货都算进去之后，畅销品也可能是亏钱的。",[["unprofitable","不盈利的"],["freight","货运费"]]],
+["规模与盈利","Our goal this year is profitable growth, not growth at any cost.","我们今年的目标是有利润的增长，而不是不惜代价的增长。",[["profitable growth","盈利性增长"],["at any cost","不惜一切代价"]]],
+["规模与盈利","Sometimes the smartest move is to stop selling a product that loses money on every order.","有时最明智的做法是停售那些每单都亏钱的产品。",[["smartest move","最明智的做法"]]],
+["规模与盈利","Scale only helps when the unit economics are already healthy.","只有单位经济模型本身健康时，规模才有帮助。",[["unit economics","单位经济模型"]]],
+["损益与贡献利润","I review the category P&L every week, line by line.","我每周都会逐行审阅品类的损益表。",[["P&L","损益表 (Profit and Loss)"],["line by line","逐行地"]]],
+["损益与贡献利润","Contribution margin tells us what is left after the variable costs of selling an item.","贡献利润告诉我们扣除销售某件商品的变动成本后还剩多少。",[["contribution margin","贡献利润"],["variable costs","变动成本"]]],
+["损益与贡献利润","If an item has negative contribution margin, more volume just means bigger losses.","如果一件商品的贡献利润为负，销量越大只意味着亏损越大。",[["negative","负的"],["volume","销量"]]],
+["损益与贡献利润","We look at net price realization, not just the list price.","我们关注的是实际净价实现，而不只是标价。",[["net price realization","净价实现"],["list price","标价、目录价"]]],
+["损益与贡献利润","Advertising spend should be judged against incremental profit, not only revenue.","广告花费应该用增量利润来衡量，而不仅仅是销售额。",[["incremental profit","增量利润"],["ad spend","广告花费"]]],
+["损益与贡献利润","Packaging changes can lower shipping costs and lift margin across the whole range.","包装调整可以降低运费，并提升整个产品线的利润率。",[["lift margin","提升利润率"],["range","产品线"]]],
+["损益与贡献利润","I always separate one-time costs from recurring costs when I build a forecast.","做预测时，我总是把一次性成本和经常性成本分开。",[["one-time costs","一次性成本"],["forecast","预测"]]],
+["零售与卖家模式","In the vendor model, Amazon buys inventory from the brand and sets the retail price.","在供应商（Vendor）模式下，亚马逊从品牌采购库存并制定零售价。",[["vendor model","供应商模式 (1P)"],["retail price","零售价"]]],
+["零售与卖家模式","In the seller model, the brand keeps control of pricing and inventory but carries more operational work.","在卖家（Seller）模式下，品牌掌控定价和库存，但要承担更多运营工作。",[["seller model","第三方卖家模式 (3P)"],["operational work","运营工作"]]],
+["零售与卖家模式","Many brands run a hybrid approach, using both models for different products.","很多品牌采取混合模式，不同产品使用不同的模式。",[["hybrid approach","混合模式"]]],
+["零售与卖家模式","The right model depends on your margins, your team, and how much control you need.","选择哪种模式取决于你的利润率、团队以及你需要多大的控制权。",[["depends on","取决于"],["control","控制权"]]],
+["零售与卖家模式","Switching models is a strategic decision, so plan the transition carefully.","切换模式是战略决策，所以要仔细规划过渡期。",[["transition","过渡"],["strategic decision","战略决策"]]],
+["零售与卖家模式","Price matching from other retailers can push the vendor price below a sustainable level.","其他零售商的跟价可能把供应商价格压到不可持续的水平。",[["price matching","价格匹配、跟价"],["sustainable","可持续的"]]],
+["供应商组合策略","A vendor portfolio strategy decides which products deserve investment and which should be cut.","供应商产品组合策略决定哪些产品值得投入、哪些应该砍掉。",[["portfolio strategy","产品组合策略"],["deserve investment","值得投入"]]],
+["供应商组合策略","We group the catalog into hero products, core products, and long-tail items.","我们把商品目录分为主打款、核心款和长尾商品。",[["hero products","主打款、爆款"],["long-tail","长尾"]]],
+["供应商组合策略","Not every product needs to be on Amazon; some sell better in other channels.","不是每个产品都需要上亚马逊；有些在其他渠道卖得更好。",[["channels","销售渠道"]]],
+["供应商组合策略","Bundling slow movers with popular items can improve the economics of both.","把滞销品和热门商品捆绑销售可以改善两者的经济效益。",[["bundling","捆绑销售"],["slow movers","滞销品"]]],
+["供应商组合策略","We set clear rules for when to launch, grow, maintain, or exit a product.","我们为何时上新、扩大、维持或退出一个产品制定了明确规则。",[["exit","退出、下架"],["launch","上新、推出"]]],
+["供应商组合策略","Healthy in-stock rates on hero items matter more than a huge assortment.","主打款保持良好的有货率，比庞大的品类数量更重要。",[["in-stock rate","有货率"],["assortment","商品品类组合"]]],
+["年度业务回顾","The annual business review is where we align on goals and trading terms for the next year.","年度业务回顾是我们就下一年目标和交易条款达成一致的场合。",[["annual business review","年度业务回顾 (ABR)"],["trading terms","交易条款"]]],
+["年度业务回顾","Come to the review with data, not opinions.","带着数据来参加回顾会，而不是带着观点。",[["opinions","个人观点"]]],
+["年度业务回顾","We start by reviewing last year's results against the plan we agreed on.","我们先对照之前商定的计划回顾去年的业绩。",[["against the plan","对照计划"]]],
+["年度业务回顾","A good review ends with a joint business plan that both sides own.","一次好的回顾会以双方共同负责的联合业务计划收尾。",[["joint business plan","联合业务计划 (JBP)"],["own","负责、主导"]]],
+["年度业务回顾","Prepare your asks in advance and know which ones you are willing to trade.","提前准备好你的诉求，并清楚哪些是你愿意拿来交换的。",[["asks","诉求、要求"],["trade","交换、让步"]]],
+["年度业务回顾","Follow up within a week with a written summary of every commitment.","一周内用书面总结跟进每一项承诺。",[["follow up","跟进"],["commitment","承诺"]]],
+["谈判","A strong negotiation creates value for the customer, not just for one side.","好的谈判为顾客创造价值，而不只是为某一方。",[["create value","创造价值"]]],
+["谈判","If we accept higher co-op funding, what do we get in return?","如果我们接受更高的合作营销费用，我们能得到什么回报？",[["co-op funding","合作营销费用"],["in return","作为回报"]]],
+["谈判","Let's trade a lower cost price for a longer-term volume commitment.","我们用更低的进货价换取更长期的采购量承诺吧。",[["cost price","进货价、成本价"],["volume commitment","采购量承诺"]]],
+["谈判","I understand your position, but this proposal would make the item unprofitable for us.","我理解你们的立场，但这个方案会让这个商品对我们来说无利可图。",[["position","立场"],["proposal","提案"]]],
+["谈判","Can we agree on the problem before we discuss solutions?","在讨论方案之前，我们能先就问题本身达成一致吗？",[["agree on","就……达成一致"]]],
+["谈判","Always know your walk-away point before you enter the room.","进入谈判前一定要清楚自己的底线。",[["walk-away point","谈判底线、退出点"]]],
+["反向工作法","Working backwards means we start from what the customer needs and plan back from there.","反向工作法意味着我们从顾客需要什么出发，再倒推制定计划。",[["working backwards","逆向工作法、从客户倒推"]]],
+["反向工作法","Before launching, we write a short press release describing the customer benefit.","上新之前，我们会写一份简短的新闻稿，描述给顾客带来的好处。",[["press release","新闻稿"],["customer benefit","客户利益"]]],
+["反向工作法","If we cannot explain why a customer would care, we are not ready to build it.","如果我们说不清顾客为什么会在意，就还没准备好去做它。",[["care","在意"]]],
+["反向工作法","Reviews and return reasons are the fastest way to hear the customer's voice.","评论和退货原因是听到顾客声音的最快途径。",[["return reasons","退货原因"],["customer's voice","客户之声"]]],
+["反向工作法","Better product detail pages reduce returns and improve conversion.","更好的商品详情页可以减少退货并提升转化率。",[["detail page","商品详情页"],["conversion","转化率"]]],
+["面试表达","In my last role, I owned a category with about two hundred vendors.","在上一份工作中，我负责一个拥有约两百家供应商的品类。",[["owned a category","负责一个品类"]]],
+["面试表达","The situation was that our top item had strong sales but negative margin.","当时的情况是，我们最畅销的商品销量很好但利润为负。",[["situation","情境 (STAR 中的 S)"]]],
+["面试表达","My task was to bring it back to profitability within two quarters.","我的任务是在两个季度内让它恢复盈利。",[["task","任务 (STAR 中的 T)"],["quarter","季度"]]],
+["面试表达","I renegotiated freight terms and changed the case pack to cut shipping costs.","我重新谈判了运输条款，并调整了箱规以降低运费。",[["renegotiate","重新谈判"],["case pack","箱规、每箱装量"]]],
+["面试表达","As a result, contribution margin turned positive and stayed positive for the rest of the year.","结果，贡献利润转为正值，并在当年剩余时间里保持为正。",[["as a result","结果 (STAR 中的 R)"],["turned positive","转正"]]],
+["面试表达","One thing I would do differently is involve the vendor earlier in the analysis.","有一件事我会换种做法：更早地让供应商参与分析。",[["do differently","换种做法"],["involve","让……参与"]]],
+["面试表达","I disagreed with my manager on that decision, but once we decided, I fully committed.","我在那个决定上和经理意见不同，但一旦做出决定，我就全力投入。",[["disagree and commit","敢于谏言、服从大局"]]],
+["面试表达","I measure success by customer outcomes and long-term profit, not short-term revenue.","我以客户结果和长期利润衡量成功，而不是短期收入。",[["outcomes","结果、成效"],["long-term","长期的"]]],
+];
+
+const S=D.map(([t,en,zh,k])=>({t,en,zh,k})),TOP=[...new Set(S.map(s=>s.t))];
+const KEY="amzcat-gh-v1";let P={};try{P=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+let st={mode:P.mode||"listen",lang:P.lang||"bi",rate:P.rate||1,loop:!!P.loop,idx:P.idx||0,done:P.done||{},topic:"全部",seq:false,playing:false,rec:false};
+const $=id=>document.getElementById(id),au=$("au");
+const src=i=>"./"+String(i+1).padStart(2,"0")+".mp3";
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify({mode:st.mode,lang:st.lang,rate:st.rate,loop:st.loop,idx:st.idx,done:st.done}))}catch(e){}};
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const norm=x=>x.toLowerCase().replace(/[^a-z0-9&' ]/g," ").split(/\s+/).filter(Boolean);
+function diff(t,u){const a=norm(t),b=norm(u),m=a.length,n=b.length,L=[...Array(m+1)].map(()=>Array(n+1).fill(0));for(let i=m-1;i>=0;i--)for(let j=n-1;j>=0;j--)L[i][j]=a[i]===b[j]?L[i+1][j+1]+1:Math.max(L[i+1][j],L[i][j+1]);const o=[];let i=0,j=0;while(i<m){if(j<n&&a[i]===b[j]){o.push([a[i],1]);i++;j++}else if(j<n&&L[i][j+1]>=L[i+1][j])j++;else{o.push([a[i],0]);i++}}return o}
+const list=()=>S.map((s,i)=>i).filter(i=>st.topic==="全部"||S[i].t===st.topic);
+function render(){document.body.className="lang-"+st.lang;
+document.querySelectorAll("[data-m]").forEach(b=>b.classList.toggle("on",b.dataset.m===st.mode));
+document.querySelectorAll("[data-l]").forEach(b=>b.classList.toggle("on",b.dataset.l===st.lang));
+$("hint").textContent=st.mode==="listen"?"听：点「连播」按顺序播放，当前句高亮；点任意句的 ▶ 单独播放。":"说：先听原句，再点「跟读」用麦克风朗读，系统逐词比对打分。";
+$("score").textContent=st.mode==="speak"?"已跟读打分 "+Object.keys(st.done).length+"/50":"";
+const L=list();let h="",lt="";L.forEach(i=>{const s=S[i];if(s.t!==lt){h+=`<div class="tp">${s.t}</div>`;lt=s.t}
+const sc=st.done[i];h+=`<div class="c${i===st.idx?" cur":""}" id="s${i}" data-i="${i}"><button class="pb${i===st.idx&&st.playing?" on":""}" data-p="${i}" aria-label="播放">${i===st.idx&&st.playing?"■":"▶"}</button><div style="flex:1;min-width:0"><div class="n">${i+1}${st.mode==="speak"&&sc!=null?" · 最高 "+sc+" 分":""}</div><div class="en">${esc(s.en)}</div><div class="zh">${s.zh}</div><div class="k">${s.k.map(([a,b])=>`<span><b>${esc(a)}</b> ${b}</span>`).join("")}</div></div></div>`});
+$("list").innerHTML=h;const c=S[st.idx];
+$("st").innerHTML=`<span class="n">${st.idx+1}/50 </span>${st.lang==="zh"?c.zh:esc(c.en)}${st.lang==="bi"?`<div class="z">${c.zh}</div>`:""}`;
+$("act").textContent=st.mode==="listen"?(st.seq?"停止":"连播"):(st.rec?"录音中":"跟读");$("act").classList.toggle("on",st.seq||st.rec);
+$("loop").textContent=st.loop?"单句循环 开":"循环";$("loop").classList.toggle("on",st.loop);
+$("rate").value=st.rate;$("rv").textContent=(+st.rate).toFixed(1)+"x";save()}
+function scrollCur(){const e=$("s"+st.idx);e&&e.scrollIntoView({block:"center",behavior:"smooth"})}
+function play(i){st.idx=i;$("err").textContent="";au.src=src(i);au.preservesPitch=true;au.playbackRate=st.rate;
+au.play().then(()=>{au.playbackRate=st.rate}).catch(e=>{st.playing=false;render();if(e.name!=="AbortError")$("err").textContent="无法播放（"+e.name+"）。请再点一次播放按钮；若仍不行，请检查手机是否静音或网络是否可访问 GitHub。"});render();scrollCur()}
+au.addEventListener("playing",()=>{st.playing=true;render()});
+au.addEventListener("pause",()=>{st.playing=false;render()});
+au.addEventListener("error",()=>{st.playing=false;st.seq=false;render();const c=au.error?au.error.code:"?";$("err").textContent="音频加载失败（错误码 "+c+"，文件 "+src(st.idx)+"）。请检查网络（GitHub 在部分地区需代理）后点「重播」重试。"});
+au.addEventListener("ended",()=>{st.playing=false;if(st.loop){setTimeout(()=>play(st.idx),500);return}
+if(st.seq){const L=list(),p=L.indexOf(st.idx);if(p>=0&&p<L.length-1){setTimeout(()=>play(L[p+1]),600);return}st.seq=false}render()});
+function stop(){st.seq=false;au.pause();render()}
+function go(d){const L=list();let p=L.indexOf(st.idx);p=Math.min(L.length-1,Math.max(0,p+d));$("msg").innerHTML="";play(L[p<0?0:p])}
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+function record(){if(!SR){$("msg").textContent="此浏览器不支持语音识别：请听完后大声跟读，自己对照字幕检查。";return}
+au.pause();const r=new SR();r.lang="en-US";r.interimResults=false;r.maxAlternatives=1;
+r.onresult=e=>{const t=e.results[0][0].transcript,d=diff(S[st.idx].en,t),sc=Math.round(100*d.filter(x=>x[1]).length/d.length);st.done[st.idx]=Math.max(st.done[st.idx]||0,sc);$("msg").innerHTML="识别到："+d.map(x=>`<span class="${x[1]?"ok":"bd"}">${x[0]}</span>`).join(" ")+"<br>得分 "+sc+" / 100";render()};
+r.onerror=e=>{$("msg").textContent="识别失败（"+e.error+"），请允许麦克风权限后重试；也可直接跟读自查。"};
+r.onend=()=>{st.rec=false;render()};st.rec=true;$("msg").textContent="请开始跟读…";render();try{r.start()}catch(e){st.rec=false;$("msg").textContent="无法启动麦克风，请直接跟读自查。";render()}}
+$("topic").innerHTML=["全部",...TOP].map(t=>`<option>${t}</option>`).join("");
+$("topic").onchange=e=>{st.topic=e.target.value;const L=list();if(!L.includes(st.idx))st.idx=L[0];render()};
+document.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{stop();st.mode=b.dataset.m;$("msg").textContent="";render()});
+document.querySelectorAll("[data-l]").forEach(b=>b.onclick=()=>{st.lang=b.dataset.l;render()});
+$("list").onclick=e=>{const p=e.target.closest("[data-p]");if(p){const i=+p.dataset.p;st.seq=false;if(i===st.idx&&st.playing)au.pause();else play(i);return}const c=e.target.closest("[data-i]");if(c){st.idx=+c.dataset.i;$("msg").textContent="";render()}};
+$("rep").onclick=()=>{st.seq=false;play(st.idx)};
+$("act").onclick=()=>{if(st.mode==="listen"){if(st.seq)stop();else{st.seq=true;play(st.idx)}}else if(!st.rec)record()};
+$("loop").onclick=()=>{st.loop=!st.loop;render()};$("prev").onclick=()=>go(-1);$("next").onclick=()=>go(1);
+$("rate").oninput=e=>{st.rate=+e.target.value;au.playbackRate=st.rate;render()};
+render();au.src=src(st.idx);au.load();
+</script></body></html>
